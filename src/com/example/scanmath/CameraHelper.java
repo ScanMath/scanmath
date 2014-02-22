@@ -43,14 +43,17 @@ public class CameraHelper extends SurfaceView implements Callback {
 	
 	/** A safe way to get an instance of the Camera object. */
 	public static Camera getCameraInstance() {
-	    Camera c = null;
+	    Camera camera = null;
 	    try {
-	        c = Camera.open(); // attempt to get a Camera instance
+	        camera = Camera.open(); // attempt to get a Camera instance
+            Camera.Parameters params= camera.getParameters();
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+            camera.setParameters(params);
 	    }
 	    catch (Exception e){
 	        // Camera is not available (in use or does not exist)
 	    }
-	    return c; // returns null if camera is unavailable
+	    return camera; // returns null if camera is unavailable
 	}
 	
     public CameraHelper(Context context, Camera camera) {
@@ -78,23 +81,7 @@ public class CameraHelper extends SurfaceView implements Callback {
     	}
     }
 
-    public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
-        if (mHolder.getSurface() == null){
-          return;
-        }
-        try {
-            mCamera.stopPreview();
-        } catch (Exception e){
-          // ignore: tried to stop a non-existent preview
-        }
-        try {
-            mCamera.setPreviewDisplay(mHolder);
-            mCamera.startPreview();
-
-        } catch (Exception e){
-            Log.d(TAG, "Error starting camera preview: " + e.getMessage());
-        }
-    }
+    public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) { }
     
     /** Create a file Uri for saving an image or video */
     private static Uri getOutputMediaFileUri(int type){
