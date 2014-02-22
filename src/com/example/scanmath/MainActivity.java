@@ -48,10 +48,8 @@ public class MainActivity extends Activity {
 		mCamera.takePicture(CameraHelper.mShutterCallback, null, CameraHelper.mPicture);
 		// Create the result Intent and include the picture
         Intent intent = new Intent(mContext, DisplayPicture.class);
-        //intent.putExtra(EXTRA_PICTURE_FILE, CameraHelper.getmPictureFile());
         startActivity(intent);
         // Set result and finish this Activity
-        //setResult(Activity.RESULT_OK, intent);
         //finish();
 	}
 
