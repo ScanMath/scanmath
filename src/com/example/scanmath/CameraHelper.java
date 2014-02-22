@@ -48,6 +48,8 @@ public class CameraHelper extends SurfaceView implements Callback {
 	        camera = Camera.open(); // attempt to get a Camera instance
             Camera.Parameters params= camera.getParameters();
             params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+            params.setColorEffect(Camera.Parameters.EFFECT_MONO);
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
             camera.setParameters(params);
 	    }
 	    catch (Exception e){
