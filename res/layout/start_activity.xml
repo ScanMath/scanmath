@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:background="@android:color/black" >
+    android:background="@android:color/black"
+    android:weightSum="1">
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="117dp"
+        android:text="@string/camera"
+        android:id="@+id/camera_bttn"
+        android:layout_marginTop="159dp"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/bttn_with_border"
+        android:textColor="#ffffff"
+        android:textColorHighlight="#ffce83"
+        android:textSize="@android:dimen/app_icon_size"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/camera_bttn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="512dp"
-        android:text="@string/camera"
-        android:id="@+id/camera_bttn"
-        android:layout_gravity="center_vertical" />
+        <Button
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button"
+            android:layout_weight="0.14" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="511dp"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_gravity="center_vertical" />
-</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button2"
+            android:layout_weight="0.87" />
+    </LinearLayout>
+
+</RelativeLayout>

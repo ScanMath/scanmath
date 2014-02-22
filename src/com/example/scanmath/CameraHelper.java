@@ -86,9 +86,9 @@ public class CameraHelper extends SurfaceView implements Callback {
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) { }
     
     /** Create a file Uri for saving an image or video */
-    private static Uri getOutputMediaFileUri(int type){
-    	return Uri.fromFile(getOutputMediaFile(type));
-    }
+//    private static Uri getOutputMediaFileUri(int type){
+//    	return Uri.fromFile(getOutputMediaFile(type));
+//    }
     
     public static ShutterCallback mShutterCallback = new ShutterCallback() {
         public void onShutter() {
@@ -102,58 +102,58 @@ public class CameraHelper extends SurfaceView implements Callback {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-            File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
-            if (pictureFile == null){
-                Log.d(TAG, "Error creating media file, check storage permissions");
-                return;
-            }
-            try {
-                FileOutputStream fos = new FileOutputStream(pictureFile);
-                fos.write(data);
-                fos.close();
-                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, 
-                		Uri.parse("file://"+ Environment.getExternalStorageDirectory())));
-            } catch (FileNotFoundException e) {
-                Log.d(TAG, "File not found: " + e.getMessage());
-            } catch (IOException e) {
-                Log.d(TAG, "Error accessing file: " + e.getMessage());
-            }
+//            File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+//            if (pictureFile == null){
+//                Log.d(TAG, "Error creating media file, check storage permissions");
+//                return;
+//            }
+//            try {
+//                FileOutputStream fos = new FileOutputStream(pictureFile);
+//                fos.write(data);
+//                fos.close();
+//                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+//                		Uri.parse("file://"+ Environment.getExternalStorageDirectory())));
+//            } catch (FileNotFoundException e) {
+//                Log.d(TAG, "File not found: " + e.getMessage());
+//            } catch (IOException e) {
+//                Log.d(TAG, "Error accessing file: " + e.getMessage());
+//            }
         }
     };
     
     /** Create a File for saving an image or video */
-    private static File getOutputMediaFile(int type){
-    	
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                  Environment.DIRECTORY_PICTURES), "MyCameraApp");
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
-                Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "IMG_"+ timeStamp + ".jpg");
-        } else if(type == MEDIA_TYPE_VIDEO) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-            "VID_"+ timeStamp + ".mp4");
-        } else {
-            return null;
-        }
-        setmPictureFile(mediaFile);
-        return mediaFile;
-    }
+//    private static File getOutputMediaFile(int type){
+//
+//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+//                  Environment.DIRECTORY_PICTURES), "MyCameraApp");
+//        if (! mediaStorageDir.exists()){
+//            if (! mediaStorageDir.mkdirs()){
+//                Log.d("MyCameraApp", "failed to create directory");
+//                return null;
+//            }
+//        }
+//        // Create a media file name
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        File mediaFile;
+//        if (type == MEDIA_TYPE_IMAGE){
+//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+//            "IMG_"+ timeStamp + ".jpg");
+//        } else if(type == MEDIA_TYPE_VIDEO) {
+//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+//            "VID_"+ timeStamp + ".mp4");
+//        } else {
+//            return null;
+//        }
+//        setmPictureFile(mediaFile);
+//        return mediaFile;
+//    }
 
-	public static File getmPictureFile() {
-		return mPictureFile;
-	}
-
-	public static void setmPictureFile(File mPictureFile) {
-		CameraHelper.mPictureFile = mPictureFile;
-	}
+//	public static File getmPictureFile() {
+//		return mPictureFile;
+//	}
+//
+//	public static void setmPictureFile(File mPictureFile) {
+//		CameraHelper.mPictureFile = mPictureFile;
+//	}
 
 }
