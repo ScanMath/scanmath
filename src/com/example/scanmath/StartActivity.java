@@ -55,6 +55,9 @@ public class StartActivity extends Activity {
                     if (photoFile != null) {
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                                 Uri.fromFile(photoFile));
+                        takePictureIntent.putExtra("crop", "true");
+                        takePictureIntent.putExtra("outputX",600);
+                        takePictureIntent.putExtra("outputY", 600);
                         setResult(RESULT_OK, takePictureIntent);
                         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                     }
