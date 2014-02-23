@@ -3,6 +3,8 @@ package com.example.scanmath;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -55,6 +57,8 @@ public class StartActivity extends Activity {
                     if (photoFile != null) {
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                                 Uri.fromFile(photoFile));
+                        takePictureIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION,
+                                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                         takePictureIntent.putExtra("crop", "true");
                         takePictureIntent.putExtra("outputX",600);
                         takePictureIntent.putExtra("outputY", 600);
