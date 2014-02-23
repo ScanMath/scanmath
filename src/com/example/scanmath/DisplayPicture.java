@@ -25,7 +25,7 @@ public class DisplayPicture extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_picture);
-		setupActionBar();
+//		setupActionBar();
 
         ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
         File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");

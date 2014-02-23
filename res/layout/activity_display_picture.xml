@@ -12,6 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/imageView"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="false" />
+        android:scaleType="fitCenter"
+        android:background="@android:color/black"
+        android:adjustViewBounds="true" />
 </RelativeLayout>
