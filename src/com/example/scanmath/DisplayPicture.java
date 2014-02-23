@@ -1,12 +1,22 @@
 package com.example.scanmath;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class DisplayPicture extends Activity {
 
@@ -16,6 +26,38 @@ public class DisplayPicture extends Activity {
 		setContentView(R.layout.activity_display_picture);
 		// Show the Up button in the action bar.
 		setupActionBar();
+        ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
+        File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
+        FileInputStream fin = null;
+        byte[] byte_img = new byte[(int) img_file.length()];
+        try {
+//            fin = openFileInput("math_img.jpg");
+            fin = new FileInputStream(img_file);
+        }
+        catch (IOException ex) {
+            Log.e("read", "Can not read img file");
+        }
+        if (fin != null) {
+            try {
+                fin.read(byte_img);
+            }
+            catch (IOException ex) {
+                Log.e("read", "can not read img file");
+            }
+        }
+        try {
+            fin.close();
+        }
+        catch (IOException ex) {
+            Log.e("file", "can not close file");
+        }
+        if (byte_img.length < 100) {
+            Log.e("file", "bad img file");
+        }
+        Bitmap bm = BitmapFactory.decodeByteArray(byte_img, 0, byte_img.length);
+//        imgSlot.setImageBitmap(bm);
+        Log.e("file", "file size: " + img_file.length());
+        imgSlot.setImageURI(Uri.fromFile(img_file));
 	}
 
 	/**

@@ -22,18 +22,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.scanmath.MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.example.scanmath.DisplayPicture"
             android:label="@string/title_activity_display_picture"
-            android:parentActivityName="com.example.scanmath.MainActivity" >
+            android:parentActivityName="com.example.scanmath.StartActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.scanmath.MainActivity" />
