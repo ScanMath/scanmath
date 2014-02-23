@@ -14,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -33,17 +35,23 @@ public class StartActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File photoFile = null;
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    photoFile = new File(mContext.getFilesDir(), "math_img.jpg");
+                File photoFile = new File(mContext.getFilesDir(), "math_img.jpg");
+                photoFile.delete();
+                // else camera won't have write permission
+                try {
+                    FileOutputStream fos = openFileOutput("math_img.jpg", Context.MODE_WORLD_WRITEABLE);
                     try {
-                        photoFile.createNewFile();
-                        Log.e("file", "am creat" + photoFile.getPath());
+                        fos.close();
                     }
-                    catch (IOException ex) {
-                        Log.e("file", "eroare la creere");
-                    }
+                    catch (IOException ex) {}
+                }
+                catch (FileNotFoundException ex) {
+                    Log.e("file", "img nu a putu fi creata");
+                }
 
+                photoFile = new File(mContext.getFilesDir(), "math_img.jpg");
+
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     if (photoFile != null) {
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                                 Uri.fromFile(photoFile));

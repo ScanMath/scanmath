@@ -1,6 +1,7 @@
 package com.example.scanmath;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -24,41 +25,51 @@ public class DisplayPicture extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_picture);
-		// Show the Up button in the action bar.
 		setupActionBar();
+
         ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
         File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
-        FileInputStream fin = null;
-        byte[] byte_img = new byte[(int) img_file.length()];
-        try {
-//            fin = openFileInput("math_img.jpg");
-            fin = new FileInputStream(img_file);
-        }
-        catch (IOException ex) {
-            Log.e("read", "Can not read img file");
-        }
-        if (fin != null) {
-            try {
-                fin.read(byte_img);
-            }
-            catch (IOException ex) {
-                Log.e("read", "can not read img file");
-            }
-        }
-        try {
-            fin.close();
-        }
-        catch (IOException ex) {
-            Log.e("file", "can not close file");
-        }
-        if (byte_img.length < 100) {
-            Log.e("file", "bad img file");
-        }
-        Bitmap bm = BitmapFactory.decodeByteArray(byte_img, 0, byte_img.length);
-//        imgSlot.setImageBitmap(bm);
-        Log.e("file", "file size: " + img_file.length());
-        imgSlot.setImageURI(Uri.fromFile(img_file));
+        imgSlot.setImageBitmap(decodeSampledBitmapFromResource(img_file, 1000, 1000));
 	}
+
+    public static Bitmap decodeSampledBitmapFromResource(File img_file,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(img_file.getPath(), options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(img_file.getPath(), options);
+    }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
 
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
