@@ -34,7 +34,7 @@
             android:layout_width="188dp"
             android:layout_height="wrap_content"
             android:text="New Button"
-            android:id="@+id/button"
+            android:id="@+id/import_bttn"
             android:layout_weight="0.14" />
 
         <Button

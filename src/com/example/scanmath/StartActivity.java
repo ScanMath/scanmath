@@ -26,6 +26,7 @@ import java.io.IOException;
 public class StartActivity extends Activity {
     private Context mContext;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_SELECT_PHOTO = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +61,21 @@ public class StartActivity extends Activity {
                         takePictureIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION,
                                 ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                         takePictureIntent.putExtra("crop", "true");
-                        takePictureIntent.putExtra("outputX",600);
-                        takePictureIntent.putExtra("outputY", 600);
                         setResult(RESULT_OK, takePictureIntent);
                         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                     }
                 }
+            }
+        });
+
+        Button importImgBttn = (Button) findViewById(R.id.import_bttn);
+        importImgBttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent importPic = new Intent(Intent.ACTION_PICK);
+                importPic.setType("image/*");
+                setResult(RESULT_OK, importPic);
+                startActivityForResult(importPic, REQUEST_SELECT_PHOTO);
             }
         });
     }
@@ -76,6 +86,10 @@ public class StartActivity extends Activity {
             Log.e("result", "sunt in result");
             Intent dispImg = new Intent(mContext, DisplayPicture.class);
             startActivity(dispImg);
+        }
+
+        if (requestCode == REQUEST_SELECT_PHOTO && resultCode == RESULT_OK) {
+            Log.e("img", "am selectat img");
         }
     }
 
