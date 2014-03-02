@@ -23,13 +23,18 @@ import java.io.IOException;
 
 public class DisplayPicture extends Activity {
 
+    static {
+        System.loadLibrary("hello-jni");
+    }
+    public native String stringFromJNI();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_picture);
 //		setupActionBar();
         EditText txt = (EditText) findViewById(R.id.editText);
-        txt.setText("matza doarme puturoasa :)");
+        txt.setText(stringFromJNI());
 
 //        ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
 //        File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
