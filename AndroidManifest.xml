@@ -27,7 +27,6 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.scanmath.DisplayPicture"
-            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:parentActivityName="com.example.scanmath.StartActivity" >
             <meta-data

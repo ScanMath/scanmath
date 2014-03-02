@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
@@ -87,8 +88,9 @@ public class DisplayPicture extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.display_picture, menu);
-		return true;
+        MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.display_picture, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -104,8 +106,15 @@ public class DisplayPicture extends Activity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+        case R.id.send_on_wf:
+            Log.e("ACTION BAR", "EXPORT ON WFA");
+            return true;
+        case R.id.export_as_latex:
+            Log.e("ACTION BAR", "EXPORT AS LATEX");
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 
 }
