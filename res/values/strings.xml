@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_display_picture">DisplayPicture</string>
     <string name="camera">Take snapshot</string>
+    <string name="send_on_wfa">Send on wfalpha</string>
+    <string name="export_as_latex">Export as LaTeX</string>
 
 </resources>
