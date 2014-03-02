@@ -9,7 +9,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="117dp"
+        android:layout_height="wrap_content"
         android:text="@string/camera"
         android:id="@+id/camera_bttn"
         android:layout_marginTop="159dp"
