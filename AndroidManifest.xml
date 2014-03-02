@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
     
     
@@ -27,7 +27,6 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.scanmath.DisplayPicture"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:parentActivityName="com.example.scanmath.StartActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -1,5 +1,6 @@
 package com.example.scanmath;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -21,7 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class DisplayPicture extends Activity {
+public class DisplayPicture extends Activity{
 
     static {
         System.loadLibrary("hello-jni");
@@ -32,13 +33,12 @@ public class DisplayPicture extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_picture);
-//		setupActionBar();
         EditText txt = (EditText) findViewById(R.id.editText);
         txt.setText(stringFromJNI());
 
 //        ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
 //        File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
-//        imgSlot.setImageBitmap(decodeSampledBitmapFromResource(img_file, 1000, 1000));
+//        imgSloth.setImageBitmap(decodeSampledBitmapFromResource(img_file, 1000, 1000));
 	}
 
     public static Bitmap decodeSampledBitmapFromResource(File img_file,
@@ -79,16 +79,6 @@ public class DisplayPicture extends Activity {
 
         return inSampleSize;
     }
-
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
