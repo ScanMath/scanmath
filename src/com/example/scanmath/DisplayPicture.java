@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -26,6 +27,8 @@ public class DisplayPicture extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_picture);
 //		setupActionBar();
+        EditText txt = (EditText) findViewById(R.id.editText);
+        txt.setText("matza doarme puturoasa :)");
 
 //        ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
 //        File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
