@@ -27,9 +27,9 @@ public class DisplayPicture extends Activity {
 		setContentView(R.layout.activity_display_picture);
 //		setupActionBar();
 
-        ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
-        File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
-        imgSlot.setImageBitmap(decodeSampledBitmapFromResource(img_file, 1000, 1000));
+//        ImageView imgSlot = (ImageView) findViewById(R.id.imageView);
+//        File img_file = new File(this.getFilesDir().getPath() + "/math_img.jpg");
+//        imgSlot.setImageBitmap(decodeSampledBitmapFromResource(img_file, 1000, 1000));
 	}
 
     public static Bitmap decodeSampledBitmapFromResource(File img_file,
